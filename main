@@ -1,0 +1,74 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct Car
+    {
+        string car_brand;
+        string color;
+        int year;
+        int mileage;
+    };
+
+bool compareMileage(Car car1, Car car2)
+    {
+        return car1.mileage > car2.mileage;
+    }
+
+bool compareName(Car car1, Car car2)
+    {
+        return car1.car_brand < car2.car_brand;
+    }
+
+int main()
+{
+
+    const int n = 3;
+    string menu, choose;
+    int a, j, i;
+    Car cars[n];
+
+    while (choose != "q")
+        {
+
+            menu = "\n(E)nter \nSort by (N)ame \nSort by (M)ileage \n(D)isplay \n(Q)uit";
+            cout << menu + "\nChoose command: ";
+            cin >> choose;
+
+            if (choose == "e") {
+                cout << "How many cars? : ";
+                cin >> a;
+                for (i = 0; i < a; i++) {
+
+                    cout << "Car brand " << i + 1 << ": ";
+                    cin >> cars[i].car_brand;
+                    cout << "Color " << i + 1 << ": ";
+                    cin >> cars[i].color;
+                    cout << "Year " << i+1 << ": ";
+                    cin >> cars[i].year;
+                    cout << "Mileage " << i+1 << ": ";
+                    cin >> cars[i].mileage;
+                }
+            }
+
+            if (choose == "d"){
+
+                for (j = 0; j < a; j++){
+                    cout << "Car " << j+1 << ": " << " " + cars[j].car_brand << ", " + cars[j].color << ", " << cars[j].year << ", " << cars[j].mileage << endl;}
+                for (j = 0; j < a; j++){
+                    if(cars[j].year > 2021-5)
+                        cout << "\nCar " << j+1 << ": " << " " + cars[j].car_brand << ", " + cars[j].color << ", " << cars[j].year << ", " << cars[j].mileage << endl;
+
+                    }
+                }
+
+            if (choose == "m") {
+                sort(cars, cars + a, compareMileage);
+            }
+
+            if (choose == "n"){
+                sort(cars, cars + a, compareName);
+            }
+        }
+}
